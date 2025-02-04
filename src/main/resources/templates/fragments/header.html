@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="header">
+    <header class="top-container">  
+     
+       
+		
+		 <nav class="nav-links">
+            <a class="top_items" href="/evento"><i class="fas fa-calendar-day"></i><span> Eventi</span></a>
+            <a class="top_items" href="/food"><i class="fas fa-utensils"></i><span> Menu</span></a>
+
+          
+			
+			  <th:block class="nav-links-admin" th:if="${userRole == 'ADMIN'}">
+                <a class="top_items" th:href="@{/admin/indexEvento}">
+                    <i class="fas fa-calendar-day" style="vertical-align: middle;"></i><span> Gestisci Eventi</span>
+                </a>
+                <a class="top_items" th:href="@{/admin/indexFood}">
+                    <i class="fas fa-utensils" style="vertical-align: middle;"></i><span> Gestisci Menu</span>
+                </a> 
+                <a class="top_items" th:href="@{/admin/prenotazioni}">
+                    <i class="fas fa-folder" style="justify-content: center;"></i><span> Gestisci Prenotazioni</span>
+                </a>   
+            </th:block>
+        </nav>
+
+		
+		
+        <div class="logo-container">
+            <a href="/"><img src="/images/logo-siw.png" alt="Logo"></a>
+        </div>
+
+		
+		
+        <div class="user-menu">
+            <th:block th:if="${userDetails}">
+                <a class="top_items"><i class="fas fa-user"></i>
+                    <span th:text="${userDetails.username}"></span>
+                </a>
+                <a href="/logout"><i class="fas fa-sign-out-alt"></i></a>
+            </th:block>
+
+            <th:block th:unless="${userDetails}">
+                <a href="/login">Login</a>
+            </th:block>
+        </div>
+    </header>
+</th:block>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	
+ <head>
+    <title>Ukihashi Ramen - Evento</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<header th:replace="~{fragments/header}"></header>
+
+	
+	
+	<div class="main-container">
+		<div th:if="${evento}">
+			
+		 		<h1 class="main-title" th:text="${evento.title}"></h1>	
+			 		<img class="portrait" th:src="${evento.urlImage != '' ? evento.urlImage : '/images/default_art.jpg'}"/>
+
+				
+				
+				
+				<div class="item-details">
+
+		       	<i class="fas fa-calendar-week" th:if="${evento.date}"></i><span th:if="${evento.date}" th:text="${evento.date}"></span><br>
+			    <i class="fas fa-location-arrow" th:if="${evento.sala}"></i><span th:if="${evento.sala}" th:text="${evento.sala.name}"></span>
+				<a th:if="${evento.sala} and ${userRole}=='ADMIN'" th:href="'/admin/evento/' + ${evento.id} + '/removeSala/' + ${evento.sala.id}"><i class="fas fa-trash-alt"></i></a><br>
+				
+					<p class= "descrizione" th:if="${evento.descrizione} != ''" th:utext="${#strings.replace(evento.descrizione, '\n', '<br/>')}"></div>
+
+					</p>
+			<br>
+		
+					
+			<div class="input-group">	
+				<form th:action="@{'/user/prenotati/' + ${evento.id}}" method="POST">
+				    <label for="numeroPersone">Persone:</label>
+				    <input type="number" id="numeroPersone" name="numeroPersone" style="width: 10%" required min="1">
+				    <button type="submit">Prenota!</button>
+				</form>
+				<div th:if="${error}" th:text="${error}"></div>
+
+			</div>	
+			
+			
+			<div class="input-group" th:if="${userRole}=='ADMIN'">	
+				<br>
+					<form th:action="@{'/admin/upload/evento/'+${evento.id}}"  method="POST" enctype="multipart/form-data">
+						  <label for="file">Aggiorna immagine:</label>
+	  	             	<div class="file-upload">
+	  	               		<input type="file" name="file" id="file" accept="image/*" required/>
+	  	               		<button type="submit">Carica</button>
+	  	             	</div>
+				    </form>
+
+																	
+					<form th:action="@{'/admin/evento/' + ${evento.id} + '/addSala'}" method="POST">
+						<label for="salaId">Aggiorna sala:</label>
+									      
+							<select id="salaId" name="salaId" required>
+
+				            	<option value="" disabled selected>Sala</option>
+								
+				            	<option th:each="sala : ${sale}" 
+				                    	th:value="${sala.id}" 
+				                    	th:text="${sala.name}"></option>
+							</select>
+							<button type="submit" th:text="'Cambia'"></button>
+					</form>
+					<br>	  
+						<div class="action-icons">	
+							<a th:href="@{'/admin/deleteEvento/' + ${evento.id}}"class="action-icon"><i class="fas fa-trash"></i></a>
+							<a th:href="@{'/admin/manageEvento/' + ${evento.id}}"class="action-icon"><i class="fas fa-edit"></i></a>
+						</div>
+						
+			</div>
+			
+		</div>
+	</div>	
+	
+	<footer th:replace="~{fragments/footer}"></footer>
+
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Ukihashi Ramen - Registrazione
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	
+	<div class="main-container register">
+		<h1>Registrazione nuovo utente</h1>
+		
+		<form class="form" th:action="@{/register}" method="POST">
+			<div class="input-group">
+				
+				<label>Nome</label>
+				<span><input type="text" required th:field="${user.name}" /></span>
+				
+				<label>Cognome</label>
+				<span><input type="text"  required th:field="${user.surname}" /></span>
+				
+				<label>Email</label>
+				<span><input type="text" required th:field="${user.email}" /></span>
+				
+				<label>Username</label>
+				<span><input type="text" required th:field="${credentials.username}" /></span>
+			
+				<label>Password</label>
+				<span><input type="password" required th:field="${credentials.password}" /></span>
+				
+				<span th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}" style="color:red"></span>
+				<span th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" style="color:red"></span>
+				
+			</div>
+		
+			<div><button type="submit">Registra</button> <a class="fake-button" href="/">Annulla</a></div>
+			
+
+		</form>
+		<br>
+	</div>
+	<footer th:replace="~{fragments/footer} "></footer>
+
+</body>
+
+</html>

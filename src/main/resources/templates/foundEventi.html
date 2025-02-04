@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Ukihashi Ramen - Eventi</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<header th:replace="~{fragments/header}"></header>
+			
+	<div class="main-container">
+
+		<h1>Eventi:</h1>
+		<div th:if="${eventi.isEmpty()}">Non ci sono eventi programmati per questa sera..
+			
+			<a class="fake-button" th:href="@{/formSearchEventi}" th:text="Riprova"></a>
+		</div>
+			<ul class = "list" th:if="${!eventi.isEmpty()}">
+				
+				<a th:each="event : ${eventi}"	href="event.html" th:href="@{'/event' + '/' + ${event.id}}">
+					<li th:text="${event.name}"></li></a>
+		
+			</ul>
+		<br>
+		</div>
+		<footer th:replace="~{fragments/footer} "></footer>
+
+</body>
+
+</html>

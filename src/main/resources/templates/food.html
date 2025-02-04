@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ukihashi Ramen</title>
+  <link rel="stylesheet" href="/css/stile.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header th:replace="~{fragments/header}"></header>
+
+  
+  <div class="main-container">
+    <div th:if="${food}">
+      <h1 class="main-title" th:text="${food.name}"></h1>
+	        <img class="portrait" th:src="${food.urlOfPicture != '' ? food.urlOfPicture : '/images/default_art.jpg'}" />
+
+    
+
+	      <div class="item-details">
+	        <i class="fas fa-euro" th:if="${food.prezzo} != ''"></i><span class= "prezzo" th:if="${food.prezzo}" th:text="' ' + ${food.prezzo}"></span><br>
+	        <i class="far fa-list-alt" th:if="${food.descrizione}"></i><span  class= "descrizione"th:if="${food.descrizione}" th:text="' ' + ${food.descrizione}"></span><br>
+	      </div>
+	  
+	  
+		  <div class="input-group" th:if="${userRole} == 'ADMIN'">
+			<br>
+	           <form th:action="@{'/admin/upload/food/'+${food.id}}" method="POST" enctype="multipart/form-data">
+	             <label for="file">Aggiorna immagine:</label>
+	             	<div class="file-upload">
+	               		<input type="file" name="file" id="file" accept="image/*" required/>
+	               		<button type="submit">Carica</button>
+	             	</div>
+	           </form>
+			   
+			   
+		       <div class="action-icons">
+		           <a th:href="@{'/admin/deleteFood/' + ${food.id}}" class="action-icon">
+		             <i class="fas fa-trash"></i></a>
+					 
+		           <a th:href="@{'/admin/manageFood/' + ${food.id}}" class="action-icon">
+		             <i class="fas fa-edit"></i></a>
+			    </div>
+		   </div>
+		   
+		   
+	</div>
+ </div>
+
+  <footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

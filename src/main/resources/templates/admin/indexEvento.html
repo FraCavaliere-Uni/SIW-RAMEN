@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Ukihashi Ramen - Gestione Eventi
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<header th:replace="~{fragments/header}"></header>
+
+	
+	<div class="main-container">
+			<h1 class="main-title">Gestione Eventi</h1>
+				<ul class="list">
+					<a href="/admin/formNewEvento"><li><i class="fa-solid fa-plus"></i>  Inserisci un nuovo evento</li></a>
+					<a href="/evento"><li>Gestisci eventi</li></a>
+		
+						</ul>
+						<br>
+
+	</div>
+	<footer th:replace="~{fragments/footer} "></footer>
+
+</body>
+
+</html>

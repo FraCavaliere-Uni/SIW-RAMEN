@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ukihashi Ramen - Cerca Eventi</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<header th:replace="~{fragments/header}"></header>
+	<div class="main-container">	
+		<h1>Cerca eventi: </h1>
+	
+			<div class="input-group">
+				<form class="form" th:action="@{/searchEventi}" method="post">
+					<label>Data:</label> <input type="date" th:value="${date}" name="date" required th:min="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" />  <input class="fake-button" type="submit" value="Avvia" style="max-width:30%"/>
+				</form> 
+		    </div>
+	</div>
+	
+	<footer th:replace="~{fragments/footer} "></footer>
+
+</body>
+
+</html>

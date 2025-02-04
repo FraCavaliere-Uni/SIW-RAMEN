@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Ukihashi Ramen - Eventi</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<header th:replace="~{fragments/header}"></header>
+			
+	<div class="main-container">
+
+		<h1 class="main-title">Prenotazioni</h1>
+		<a class="fake-button" href="/formSearchEventi"><i class="fa-solid fa-magnifying-glass"></i> Cerca eventi</a>
+		<br>
+		
+		<div> Clicca per cancellare: </div>
+		<br>
+		<div th:if="${prenotazioni==null || prenotazioni.isEmpty()}">Non ci sono prenotazioni</div>
+		
+		<br>
+		<ul class="list">
+			
+			<a th:each="prenotazione : ${prenotazioni}" 
+			th:href="@{'prenotazioni/cancella/' + ${prenotazione.id}}">
+			<li th:text="${prenotazione.evento.title} + 
+			  				' - # Persone: ' + ${prenotazione.numeroPersone} + 
+			  				'- Data: ' + ${prenotazione.evento.date} +
+			  				'- Nominativo: ' + ${prenotazione.user.name} + ' ' + ${prenotazione.user.surname}">
+				</li> </a>
+		</ul>
+		<br>
+	</div>
+	<footer th:replace="~{fragments/footer} "></footer>
+
+</body>
+
+</html>
