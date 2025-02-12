@@ -66,8 +66,7 @@ body {
 
 	.item-details .descrizione{
 		font-style: italic; 
-		
-		margin-left: 10px;
+		margin: auto;
 
 		
 		}
@@ -180,11 +179,14 @@ select {
      background-color: #f9f9f9;
      border-radius: 8px;
      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
  }
 
 	 .input-group {
 	     margin-bottom: 15px;
 		 max-width: 80%;
+		 display: block;
+
 	 }
 	
 	 .input-group label {
@@ -201,6 +203,8 @@ select {
 	     border: 1px solid #ccc;
 	     border-radius: 4px;
 	     box-sizing: border-box;
+		
+
 	 }
 	 
 	 .input-group textarea {

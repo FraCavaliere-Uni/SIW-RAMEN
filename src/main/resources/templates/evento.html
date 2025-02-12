@@ -2,6 +2,8 @@
 <html>
 	
  <head>
+	<meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ukihashi Ramen - Evento</title>
 	<link rel="stylesheet" href="/css/stile.css" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -29,21 +31,20 @@
 		       	<i class="fas fa-calendar-week" th:if="${evento.date}"></i><span th:if="${evento.date}" th:text="${evento.date}"></span><br>
 			    <i class="fas fa-location-arrow" th:if="${evento.sala}"></i><span th:if="${evento.sala}" th:text="${evento.sala.name}"></span>
 				<a th:if="${evento.sala} and ${userRole}=='ADMIN'" th:href="'/admin/evento/' + ${evento.id} + '/removeSala/' + ${evento.sala.id}"><i class="fas fa-trash-alt"></i></a><br>
-				
-					<p class= "descrizione" th:if="${evento.descrizione} != ''" th:utext="${#strings.replace(evento.descrizione, '\n', '<br/>')}"></div>
-
-					</p>
-			<br>
+ 				<i class="far fa-list-alt" th:if="${evento.descrizione}"></i><span  class= "descrizione"th:if="${evento.descrizione}" th:text="${evento.descrizione}"></span><br>
+			<br>	
+			</div>
 		
 					
 			<div class="input-group">	
 				<form th:action="@{'/user/prenotati/' + ${evento.id}}" method="POST">
 				    <label for="numeroPersone">Persone:</label>
-				    <input type="number" id="numeroPersone" name="numeroPersone" style="width: 10%" required min="1">
+				    <input type="number" id="numeroPersone" name="numeroPersone" style="width: 1%" required min="1">
 				    <button type="submit">Prenota!</button>
-				</form>
-				<div th:if="${error}" th:text="${error}"></div>
+					<div th:if="${error}" th:text="${error}"></div>
 
+				</form>
+				
 			</div>	
 			
 			

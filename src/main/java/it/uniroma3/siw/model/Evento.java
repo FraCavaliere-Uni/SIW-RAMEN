@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +27,7 @@ public class Evento {
         @NotBlank
         private String title;
         
+    	@DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate date;
         
         @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)        
